@@ -2,9 +2,9 @@
   "name": "plateful",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "type": "commonjs",
   "devDependencies": {
     "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "sass": "^1.100.0"
   }
 }
