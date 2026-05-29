@@ -16,17 +16,21 @@ class RecipeView {
         this.#parentElement.innerHTML = '';
     }
 
-    renderSpinner = function () {
-        const markup = `
-        <div class="spinner">
-              <svg>
-                <use href="${icons}#icon-loader"></use>
-              </svg>
-            </div>
-            `;
-        this.#parentElement.innerHTML = '';
-        this.#parentElement.insertAdjacentHTML('afterbegin', markup); 
-    };
+    renderSpinner() {
+    const markup = `
+    <div class="spinner">
+          <svg>
+            <use href="${icons}#icon-loader"></use>
+          </svg>
+        </div>
+        `;
+    this.#parentElement.innerHTML = '';
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup); 
+    }
+
+    addHandlerRender(handler) {
+        ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+    }
 
     #generateMarkup() {    
     return`
@@ -82,7 +86,7 @@ class RecipeView {
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
             ${this.#data.ingredients.map(this.#genetateMarkupIngredient).join('')}
-            
+          </ul>
         </div>
 
         <div class="recipe__directions">
@@ -91,7 +95,7 @@ class RecipeView {
             This recipe was carefully designed and tested by
             <span class="recipe__publisher">${this.#data.publisher}</span>. Please check out
             directions at their website.
-          </>
+            </p>
           <a
             class="btn--small recipe__btn"
             href="${this.#data.sourceUrl}"
